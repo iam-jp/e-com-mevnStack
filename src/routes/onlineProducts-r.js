@@ -48,5 +48,4 @@ router.get('/get_online_products',async(req,res)=>{
     }
 })
 
-
 module.exports = router
