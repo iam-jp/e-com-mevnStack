@@ -62,7 +62,7 @@ router.delete('/bannerupload/delete/:id', async (req, res) => {
             return res.status(404).send()
         }
 
-        res.redirect('http://localhost:8080/bannerupload')
+        res.redirect('/bannerupload')
     } catch (e) {
         res.status(500).send()
     }
