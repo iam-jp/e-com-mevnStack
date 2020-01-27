@@ -8,6 +8,7 @@ const gcRouter = require('./routes/gcupload-r')
 const locationRouter = require ('./routes/location-r')
 const onlineStoresRouter = require('./routes/onlineStores-r')
 const onlineProductsRouter = require('./routes/onlineProducts-r')
+const userProfileRouter = require('./routes/userProfile-r')
 const http = require ('http')
 
 
@@ -24,6 +25,7 @@ app.use(gcRouter)
 app.use(locationRouter)
 app.use(onlineStoresRouter)
 app.use(onlineProductsRouter)
+app.use(userProfileRouter)
 
 
 app.use(function(req, res, next) {

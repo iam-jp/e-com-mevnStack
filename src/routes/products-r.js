@@ -4,6 +4,7 @@ const sharp = require('sharp')
 const csv = require('csvtojson')
 const products = require('./../models/product')
 const auth = require('./../middleware/auth')
+const storeAuth = auth.auth
 const fs = require('fs')
 const router = new express.Router()
 
@@ -19,7 +20,7 @@ const upload = multer({
 })
 
 
-router.post('/product', upload.single('file') , auth , async(req,res)=>{
+router.post('/product', upload.single('file') , storeAuth , async(req,res)=>{
  
     if(req.file){
     try{
@@ -60,7 +61,7 @@ router.post('/product', upload.single('file') , auth , async(req,res)=>{
     
 })
 
-router.get('/products',auth,async(req,res)=>{
+router.get('/products',storeAuth,async(req,res)=>{
     try{
         const data = await products.find({})
         res.send(data)
@@ -77,6 +78,7 @@ router.get('/products_by_id/:id',async(req,res)=>{
         res.status(400).send(e)
     }
 })
+
 
 
 csv2Productmodel=(ele)=>{

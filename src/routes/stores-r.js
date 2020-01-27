@@ -1,6 +1,7 @@
 const express = require('express')
 const stores = require('./../models/stores')
 const auth = require('./../middleware/auth')
+const storeAuth =auth.auth
 const router = new express.Router()
 
 router.post('/stores',async(req,res)=>{
@@ -30,12 +31,14 @@ router.get('/stores',async(req,res)=>{
 
 router.get('/stores/product_list/:id',async(req,res)=>{
     try{
-        const store =  await stores.findById(req.params.id)
+        const id = req.params.id
+        const store =  await stores.findById(id)
        
         const productList =  await store.populate('product').execPopulate()
          
-        // console.log(productList.product)
+        
         res.status(200).send(productList.product)
+        
        
     
         }catch(e){
@@ -43,7 +46,22 @@ router.get('/stores/product_list/:id',async(req,res)=>{
         }
 })
 
-router.get('/store/me',auth,async(req,res)=>{
+router.get('/store_by_name/product_list/:name',async(req,res)=>{
+    try{
+        const name = req.params.name
+        const store = await stores.find({businessName:name})
+        const storebyId =  await stores.findById(store[0]._id)
+       
+        const productList =  await storebyId.populate('product').execPopulate()
+         
+        
+        res.status(200).send(productList.product)
+    }catch(e){
+        console.log(e)
+    }
+})
+
+router.get('/store/me',storeAuth,async(req,res)=>{
     res.send(req.store)
 })
 
@@ -73,7 +91,7 @@ router.post('/store/login',async(req,res)=>{
 })
 
 
-router.post('/store/logout',auth,async(req,res)=>{
+router.post('/store/logout',storeAuth,async(req,res)=>{
     try{
         req.store.tokens = req.store.tokens.filter((token)=>{
             return token.token !== req.token
@@ -86,7 +104,7 @@ router.post('/store/logout',auth,async(req,res)=>{
     }
 })
 
-router.post('/store/logout_all',auth,async(req,res)=>{
+router.post('/store/logout_all',storeAuth,async(req,res)=>{
     try{
         req.store.tokens = []
         await req.store.save()

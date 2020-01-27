@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const stores = require('./../models/stores')
+const userProfile = require ('./../models/userProfile')
 
 const auth = async(req,res,next)=>{
     try{
@@ -24,5 +25,36 @@ const auth = async(req,res,next)=>{
 }
 
 
+const userAuth = async(req,res,next)=>{
+    try{
+        const token = req.header('Authorization').replace('Bearer ', '')
+        // console.log(token)
 
-module.exports=auth
+        const decoded = jwt.verify(token,'yippee-ki-yay')
+       
+
+        const user = await userProfile.findOne({_id:decoded._id,'tokens.token':token})
+
+        if(!user){
+            throw new Error ()
+        }
+
+       
+        req.user = user
+        req.token=token
+
+        next()
+
+    }
+    catch(e){
+        res.status(400).send({error:'please Authenticate'})
+    }
+
+    
+}
+
+
+module.exports={
+    auth,
+    userAuth
+}

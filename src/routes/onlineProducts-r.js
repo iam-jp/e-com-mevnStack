@@ -48,4 +48,13 @@ router.get('/get_online_products',async(req,res)=>{
     }
 })
 
+router.get('/onlineproducts_by_id/:id',async(req,res)=>{
+    try{
+        const data = await onlineProducts.findById(req.params.id)
+        res.send(data)
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
+
 module.exports = router
