@@ -54,15 +54,21 @@ const storeSchema = new mongoose.Schema({
     aLine2:{
         type:String
     },
-    shopCircle:{
+    shopCategory:{
         type:String,
         // required:true
     },
-    lat:{
-        type:String
-    },
-    long:{
-        type:String
+    location:{
+        type: {
+            type: String, 
+            enum: ['Point'], 
+            required: true
+          },
+        coordinates:{
+            type:[Number],
+            required:true
+    
+        }
     },
     city:{
         type:String,

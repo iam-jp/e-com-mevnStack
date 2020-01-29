@@ -29,6 +29,26 @@ router.get('/stores',async(req,res)=>{
     }
 })
 
+router.get('/stores/:category',async(req,res)=>{
+    try{
+        const category = req.params.category
+        const store = await stores.find({shopCategory:category})
+        res.status(200).send(store)
+    }
+    catch(e){
+        res.status(400).send(e)
+    }
+})
+
+router.delete('/stores/master_delete',async(req,res)=>{
+    try{
+        await stores.deleteMany({})
+        res.status(200).send(stores)
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
+
 router.get('/stores/product_list/:id',async(req,res)=>{
     try{
         const id = req.params.id
