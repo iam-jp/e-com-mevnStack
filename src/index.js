@@ -20,10 +20,7 @@ const port = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 app.use(history({
-    rewrites: [
-        { from: '/adminpanel/list_stores', to: '/index.html'}
-      ],
-    verbose: true
+    logger:console.log('res')
 }))
 app.use(bannerUploadRouter)
 app.use(storeRouter)
