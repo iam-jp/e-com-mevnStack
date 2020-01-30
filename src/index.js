@@ -20,11 +20,11 @@ const port = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 app.use(history({
-    index:'/index.html',
+    rewrites: [
+        { from: /\/adminpanel/, to: 'adminpanel/index.html'}
+      ],
     verbose: true
 }))
-app.use('/', express.static(path.join(__dirname, 'dist')));
-
 app.use(bannerUploadRouter)
 app.use(storeRouter)
 app.use(productRouter)
