@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json())
 app.use(history({
     rewrites: [
-        { from: /\/adminpanel/, to: 'adminpanel/index.html'}
+        { from: '/', to: '/index.html'}
       ],
     verbose: true
 }))
