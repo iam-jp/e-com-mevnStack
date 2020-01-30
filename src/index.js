@@ -1,6 +1,7 @@
 require('./db/mongoose')
 const express = require('express')
 const cors = require ('cors')
+const path = require ('path')
 const history = require('connect-history-api-fallback')
 const bannerUploadRouter = require('./routes/bannerUpload-r') 
 const storeRouter = require('./routes/stores-r')
@@ -10,7 +11,7 @@ const locationRouter = require ('./routes/location-r')
 const onlineStoresRouter = require('./routes/onlineStores-r')
 const onlineProductsRouter = require('./routes/onlineProducts-r')
 const userProfileRouter = require('./routes/userProfile-r')
-const http = require ('http')
+
 
 
 const app = express()
