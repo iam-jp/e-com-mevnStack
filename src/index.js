@@ -1,6 +1,7 @@
 require('./db/mongoose')
 const express = require('express')
 const cors = require ('cors')
+const history = require('connect-history-api-fallback')
 const bannerUploadRouter = require('./routes/bannerUpload-r') 
 const storeRouter = require('./routes/stores-r')
 const productRouter = require('./routes/products-r')
@@ -26,6 +27,7 @@ app.use(locationRouter)
 app.use(onlineStoresRouter)
 app.use(onlineProductsRouter)
 app.use(userProfileRouter)
+app.use(history)
 
 
 app.use(function(req, res, next) {

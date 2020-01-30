@@ -40,11 +40,14 @@ router.get('/stores/:category',async(req,res)=>{
     }
 })
 
-router.delete('/stores/master_delete',async(req,res)=>{
+router.get('/stores/master_delete',async(req,res)=>{
     try{
+        // const name = req.params.name
         await stores.deleteMany({})
-        res.status(200).send(stores)
+       
+        res.status(200)
     }catch(e){
+        console.log(e)
         res.status(400).send(e)
     }
 })
