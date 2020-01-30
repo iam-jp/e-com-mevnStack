@@ -27,7 +27,9 @@ app.use(locationRouter)
 app.use(onlineStoresRouter)
 app.use(onlineProductsRouter)
 app.use(userProfileRouter)
-app.use(history)
+app.use(history({
+    index:'/index.html'
+}))
 
 
 app.use(function(req, res, next) {
