@@ -98,6 +98,16 @@ router.get('/store_by_name/:name',async(req,res)=>{
     }
 })
 
+router.get('/store_by_url/:name',async(req,res)=>{
+    try{
+        const name = req.params.name
+        const store =await stores.find({url:name})
+        res.status(200).send(store)
+    }catch(e){
+
+    }
+})
+
 router.post('/store/login',async(req,res)=>{
     try{
         // const userDetails = req.body.req.body
