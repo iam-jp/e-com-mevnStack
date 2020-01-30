@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json())
 app.use(history({
     rewrites: [
-        { from: '/', to: '/index.html'}
+        { from: '/adminpanel/list_stores', to: '/index.html'}
       ],
     verbose: true
 }))
