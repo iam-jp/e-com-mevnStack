@@ -127,6 +127,9 @@ const productSchema = new mongoose.Schema({
     packingCharges:{
         type:String
     },
+    status:{
+        type:String
+    },
     vendor:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,

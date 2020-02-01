@@ -79,7 +79,27 @@ router.get('/products_by_id/:id',async(req,res)=>{
     }
 })
 
+router.delete('/products/delete/:id',async(req,res)=>{
+    try{
+        const id =req.params.id
+        await products.findByIdAndDelete(req.params.id)
+        res.status(200)
+    }catch(e){
+        console.log(e)
+        res.status(400).send(e)
+    }
+})
 
+router.patch('/products/change_status/:id',async(req,res)=>{
+    try{
+        const id = req.params.id
+        const product = await products.findById(id)
+        product.status = req.body.status
+    }catch(e){
+        console.log(e)
+        res.status.send(e)
+    }
+})
 
 csv2Productmodel=(ele)=>{
     
