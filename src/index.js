@@ -1,5 +1,6 @@
 require('./db/mongoose')
 const express = require('express')
+const fs = require('fs')
 const cors = require ('cors')
 const path = require ('path')
 const logger = require ('morgan')
@@ -14,15 +15,16 @@ const onlineStoresRouter = require('./routes/onlineStores-r')
 const onlineProductsRouter = require('./routes/onlineProducts-r')
 const userProfileRouter = require('./routes/userProfile-r')
 
-
-
+const privateKey = fs.readFileSync('privkey.pem')
+const certificate = fs.readFileSync('fullchain.pem')
+const credentials = {key:privateKey,cert:certificate}
 const app = express()
 const port = process.env.PORT || 5000
 const staticFileMiddleware = express.static(path.join(__dirname))
 app.use(cors())
 app.use(express.json())
 // app.use(https)
-const server = https.createServer(app)
+const server = https.createServer(credentials,app)
 app.use(staticFileMiddleware)
 app.use(history())
 app.use(staticFileMiddleware)
