@@ -44,7 +44,7 @@ router.get('/stores/delete/:id',async(req,res)=>{
     try{
         const id = req.params.id
         
-        await stores.findByIdAndDelete(id)
+       const store = await stores.findByIdAndDelete(id)
        
         res.status(200).send(stores)
     }catch(e){
