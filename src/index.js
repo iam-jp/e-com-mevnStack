@@ -17,7 +17,7 @@ const userProfileRouter = require('./routes/userProfile-r')
 
 // const privateKey = fs.readFileSync('sslcert/')
 // const certificate = fs.readFileSync('/etc/letsencrypt/live/www.thejasshop.com/fullchain.pem')
-const credentials = {key:privateKey,cert:certificate}
+// const credentials = {key:privateKey,cert:certificate}
 const app = express()
 const port = process.env.PORT || 5000
 const staticFileMiddleware = express.static(path.join(__dirname))
