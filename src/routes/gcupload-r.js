@@ -45,9 +45,13 @@ router.get('/gcdisplay',async(req,res)=>{
 
 router.post('/globalproducts/delete',async(req,res)=>{
     try{
-        const id =req.body
+        const gc =req.body
+        gc.forEach((ele)=>{
+           const product = await gcModel.find({asin:ele.asin})
+           await gcModel.findByIdAndDelete(product._id)
+        })
         // await gcModel.findByIdAndDelete(req.params.id)
-        res.status(200).send(id)
+        res.status(200)
     }catch(e){
         console.log(e)
         res.status(400).send(e)
