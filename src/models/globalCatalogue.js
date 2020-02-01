@@ -126,6 +126,9 @@ const gcSchema = new mongoose.Schema({
     },
     packingCharges:{
         type:Number
+    },
+    status:{
+        type:String
     }
 })
 

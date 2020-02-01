@@ -43,6 +43,17 @@ router.get('/gcdisplay',async(req,res)=>{
     }
 })
 
+router.delete('/globalproducts/delete',async(req,res)=>{
+    try{
+        const id =req.body
+        // await gcModel.findByIdAndDelete(req.params.id)
+        res.status(200).send(id)
+    }catch(e){
+        console.log(e)
+        res.status(400).send(e)
+    }
+})
+
 
 csv2model=(ele)=>{
 const gc = new gcModel(ele)
