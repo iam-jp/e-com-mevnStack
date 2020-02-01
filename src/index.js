@@ -2,6 +2,7 @@ require('./db/mongoose')
 const express = require('express')
 const cors = require ('cors')
 const path = require ('path')
+const logger = require ('morgan')
 const history = require('connect-history-api-fallback')
 const bannerUploadRouter = require('./routes/bannerUpload-r') 
 const storeRouter = require('./routes/stores-r')
@@ -22,6 +23,7 @@ app.use(express.json())
 app.use(history({
     index : '/index.html'
 }))
+app.use(express.static(__dirname));
 app.use(bannerUploadRouter)
 app.use(storeRouter)
 app.use(productRouter)
