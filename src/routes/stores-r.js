@@ -40,12 +40,13 @@ router.get('/stores/:category',async(req,res)=>{
     }
 })
 
-router.get('/stores/master_delete',async(req,res)=>{
+router.get('/stores/delete/:id',async(req,res)=>{
     try{
-        // const name = req.params.name
-        await stores.deleteMany({})
+        const id = req.params.id
+        
+        await stores.findByIdAndDelete(id)
        
-        res.status(200)
+        res.status(200).send(stores)
     }catch(e){
         console.log(e)
         res.status(400).send(e)

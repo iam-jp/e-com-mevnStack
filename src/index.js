@@ -20,7 +20,7 @@ const port = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 app.use(history({
-    logger:console.log('res')
+    index : '/index.html'
 }))
 app.use(bannerUploadRouter)
 app.use(storeRouter)
