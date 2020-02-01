@@ -43,7 +43,7 @@ router.get('/gcdisplay',async(req,res)=>{
     }
 })
 
-router.delete('/globalproducts/delete',async(req,res)=>{
+router.post('/globalproducts/delete',async(req,res)=>{
     try{
         const id =req.body
         // await gcModel.findByIdAndDelete(req.params.id)
