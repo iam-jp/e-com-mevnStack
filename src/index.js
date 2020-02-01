@@ -26,7 +26,7 @@ app.use(history({
 }))
 app.use(staticFileMiddleware)
 app.get('/', function (req, res) {
-    res.render(path.join(__dirname + '/index.html'))
+    res.send(path.join(__dirname + '/index.html'))
   })
 app.use(bannerUploadRouter)
 app.use(storeRouter)
