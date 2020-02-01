@@ -12,11 +12,13 @@ router.post('/stores',async(req,res)=>{
     try{
         await store.save()
         res.status(200).send(store)
+        console.log(store)
     }catch(e){
+        console.log(e)
         res.status(400).send(e)
     }
 
-    console.log(store)
+   
 })
 
 router.get('/stores',async(req,res)=>{
@@ -40,13 +42,14 @@ router.get('/stores/:category',async(req,res)=>{
     }
 })
 
-router.get('/stores/delete/:id',async(req,res)=>{
+router.delete('/stores/delete/:id',async(req,res)=>{
     try{
         const id = req.params.id
         
        const store = await stores.findByIdAndDelete(id)
        
-        res.status(200).send(stores)
+        res.status(200).send(store)
+        
     }catch(e){
         console.log(e)
         res.status(400).send(e)
