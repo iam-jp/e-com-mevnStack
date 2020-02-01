@@ -21,12 +21,10 @@ const staticFileMiddleware = express.static(path.join(__dirname))
 app.use(cors())
 app.use(express.json())
 app.use(staticFileMiddleware)
-app.use(history({
-    verbose:true
-}))
+app.use(history())
 app.use(staticFileMiddleware)
 app.get('/', function (req, res) {
-    res.send(path.join(__dirname + '/index.html'))
+    console.log(path.join(__dirname + '/index.html'))
   })
 app.use(bannerUploadRouter)
 app.use(storeRouter)
