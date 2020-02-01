@@ -17,13 +17,17 @@ const userProfileRouter = require('./routes/userProfile-r')
 
 const app = express()
 const port = process.env.PORT || 5000
-
+const staticFileMiddleware = express.static(path.join(__dirname))
 app.use(cors())
 app.use(express.json())
+app.use(staticFileMiddleware)
 app.use(history({
     verbose:true
 }))
-app.use(express.static(__dirname));
+app.use(staticFileMiddleware)
+app.get('/', function (req, res) {
+    res.render(path.join(__dirname + '/index.html'))
+  })
 app.use(bannerUploadRouter)
 app.use(storeRouter)
 app.use(productRouter)
