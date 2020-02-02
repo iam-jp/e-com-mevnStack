@@ -15,16 +15,16 @@ const onlineStoresRouter = require('./routes/onlineStores-r')
 const onlineProductsRouter = require('./routes/onlineProducts-r')
 const userProfileRouter = require('./routes/userProfile-r')
 
-// const privateKey = fs.readFileSync('sslcert/')
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/www.thejasshop.com/fullchain.pem')
-// const credentials = {key:privateKey,cert:certificate}
+const privateKey = fs.readFileSync('etc/letsencrypt/live/www.thejasshop.com/privkey.pem')
+const certificate = fs.readFileSync('/etc/letsencrypt/live/www.thejasshop.com/cert.pem')
+const credentials = {key:privateKey,cert:certificate}
 const app = express()
 const port = process.env.PORT || 5000
 const staticFileMiddleware = express.static(path.join(__dirname))
 app.use(cors())
 app.use(express.json())
 // app.use(https)
-// const server = https.createServer(credentials,app)
+const server = https.createServer(credentials,app)
 app.use(staticFileMiddleware)
 app.use(history())
 app.use(staticFileMiddleware)
@@ -53,8 +53,8 @@ app.use(function(req, res, next) {
 
 
 
-app.listen(port,()=>{
-    console.log('server started on port ' + port)
-})
+// app.listen(port,()=>{
+//     console.log('server started on port ' + port)
+// })
 
-// server.listen(port)
+server.listen(port)
