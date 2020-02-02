@@ -24,7 +24,8 @@ router.post('/bannerupload',upload.single('file'), async (req,res)=>{
         image:buffer
     })
     await banner.save()
-    res.status(200).send(banner)
+    res.redirect('/adminpanel/bannerupload')
+    // res.status(200).send(banner)
 },(error,req,res,next)=>{
     res.status(400).send({error:error.message})
 })
@@ -62,7 +63,7 @@ router.delete('/bannerupload/delete/:id', async (req, res) => {
             return res.status(404).send()
         }
 
-        // res.redirect('/bannerupload')
+        
     } catch (e) {
         res.status(500).send()
     }
