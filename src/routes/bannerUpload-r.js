@@ -24,7 +24,7 @@ router.post('/bannerupload',upload.single('file'), async (req,res)=>{
         image:buffer
     })
     await banner.save()
-    res.status(200)
+    res.status(200).send(banner)
 },(error,req,res,next)=>{
     res.status(400).send({error:error.message})
 })
