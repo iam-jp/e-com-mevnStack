@@ -26,7 +26,9 @@ app.use(express.json())
 // app.use(https)
 const server = https.createServer(credentials,app)
 app.use(staticFileMiddleware)
-app.use(history())
+app.use(history({
+    index:'/index.html'
+}))
 app.use(staticFileMiddleware)
 app.get('/', function (req, res) {
     res.render(path.join(__dirname + '/index.html'))
