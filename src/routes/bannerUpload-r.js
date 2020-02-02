@@ -19,12 +19,12 @@ const upload = multer({
 
 router.post('/bannerupload',upload.single('file'), async (req,res)=>{
     const buffer = await sharp(req.file.buffer).jpeg().toBuffer()
-    console.log(req)
+    // console.log(req)
     const banner = new bannerupload({
         image:buffer
     })
     await banner.save()
-    res.status(200).send()
+    res.status(200)
 },(error,req,res,next)=>{
     res.status(400).send({error:error.message})
 })
