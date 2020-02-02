@@ -25,7 +25,7 @@ router.post('/bannerupload',upload.single('file'), async (req,res)=>{
     })
     await banner.save()
     res.redirect('https://thejasshop.com/adminpanel/bannerupload')
-    // res.status(200).send(banner)
+    
 },(error,req,res,next)=>{
     res.status(400).send({error:error.message})
 })
